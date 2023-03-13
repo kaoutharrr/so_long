@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/12 10:38:27 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/12 15:26:57 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,10 @@ char	*ft_strjoin_a(char const *s1, char const *s2);
 char	*ft_strdup(char *s1);
 char	*ft_substr(char *s, int start, int len);
 void check_errors(char **map);
+void	check_walls(char **map);
+void	check_borders(char **map);
+void	map_check(char *map);
+void	collectible_check(char *map);
+void	exit_check(char *map, char c);
 
 #	endif

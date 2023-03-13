@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:19:49 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/12 10:37:43 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/12 15:21:10 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void	readmap(int fd)
 	join = "";
 	while(line)
 	{
-		
 		join = ft_strjoin(join, line);
 		line = get_next_line(fd);
 	}
 	printf("%s\n", join);
 	walls = ft_split(join, '\n');
 	check_errors(walls);
-
+	check_walls(walls);
+	check_borders(walls);
+	map_check(join);
 	}
