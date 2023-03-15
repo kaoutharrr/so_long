@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/12 15:26:57 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/14 16:03:58 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	check_borders(char **map);
 void	map_check(char *map);
 void	collectible_check(char *map);
 void	exit_check(char *map, char c);
+void fill(char **map, int i, int j, char c);
 
 #	endif

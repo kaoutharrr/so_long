@@ -3,7 +3,7 @@
 int main()
 {
 	int fd;
-	fd = open("map",O_RDONLY, 0644);
+	fd = open("map.ber",O_RDONLY, 0644);
 	// void	*mlx;
 	// void	*window;
 	// void	*img;
@@ -62,5 +62,5 @@ int main()
 	// mlx_put_image_to_window(mlx, window, kitten, 400, 100);
 	// mlx_put_image_to_window(mlx, window, door, 1000, 1000);
 	// mlx_loop(mlx);
-readmap(fd);
+ readmap(fd);
 }
