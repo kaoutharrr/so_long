@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/16 09:37:48 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/16 13:17:45 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,21 @@
 # include <mlx.h>
 # include <unistd.h>
 # include "gnl/get_next_line.h"
-
+typedef struct	s_vars {
+	void	*mlx;
+		void	*window;
+		void	*img;
+		void	*wall;
+		void	*cookie;
+		void	*kitten;
+		void	*door;
+		int		w;
+		int		h;
+		int		i;
+		int		j;
+		int a,b;
+		int n,m;
+}	t_vars;
 char	**ft_split(char  *s, char c);
 void	error(char *s, int fd, int ex);
 void    readmap(int fd);
@@ -32,4 +46,5 @@ void	exit_check(char *map, char c);
 void fill(char **map, int i, int j, char c);
 void find(char **walls, char c);
 void    game(int x, int y, char **map);
+void	move_the_player(t_vars vars, char **map);
 #	endif
