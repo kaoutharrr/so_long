@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:19:49 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/15 12:31:28 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/16 09:38:05 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	readmap(int fd)
 	int		j;;
 	i = 0;
 	j  =  0;
-	int a = 0;
 
 	if(fd < 0)
 		error("invalid map\n",2,1);
@@ -54,14 +53,22 @@ void	readmap(int fd)
 		i++;
 	
 	}
-	printf("\n i %d      j %d \n" ,i,j);
+	i = 0;
+	j = 0;
+	while(walls[i])
+		i++;
+	while(walls[0][j])
+		j++;
+	printf("\n i : %d, j : %d", i, j);
+	game(i, j, walls);
 	fill(walls, i,  j,'*');
-	while (walls[a])
-	{
-	printf("\n%s", walls[a]);
-	a++;
-	}
+	find(walls, 'E');
+	find(walls, 'C');
+	find(walls, 'P');
 	map_check(join);
+
+	
+	
 	}
 
 void	fill(char **map, int i, int j, char c)
@@ -79,4 +86,30 @@ void	fill(char **map, int i, int j, char c)
 	fill(map, i , j+1, c);
 	fill(map, i , j-1, c);
 	//return(map);
+}
+
+void find(char **walls, char c)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+
+	while(walls[i])
+	 {
+	
+		j = 0;
+		while ( walls[i][j])
+		{
+			if(walls[i][j] == c)
+				error("invalid path", 2, 1);
+			j++;
+			
+		}
+		if(walls[i][j] == c)
+				error("invalid path", 2, 1);
+		i++;
+	
+	}
 }

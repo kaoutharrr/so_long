@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/14 16:03:58 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/16 09:37:48 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	map_check(char *map);
 void	collectible_check(char *map);
 void	exit_check(char *map, char c);
 void fill(char **map, int i, int j, char c);
-
+void find(char **walls, char c);
+void    game(int x, int y, char **map);
 #	endif
