@@ -6,13 +6,32 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:24:19 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/18 02:06:34 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/18 11:39:25 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
 
+int find_cookie(t_vars vars)
+{
+	vars.i = 0;
+	vars.j = 0;
+
+	while (vars.map[vars.i])
+	{
+		vars.j = 0;
+		while (vars.map[vars.i][vars.j])
+		{
+			if(vars.map[vars.i][vars.j] == 'C')
+				return(1);
+			vars.j++;
+		}
+		vars.i++;
+
+	}
+	return (0);
+}
 
 // int	close(int keycode, void *mlx, void *win)
 // {
@@ -54,31 +73,20 @@ int close1(int keycode , t_vars *vars)
 		vars->i++;
 		vars->n+=100;
 	}
-	// while(vars->map[vars->i])
-	// {
-	// 	vars->j = 0;
-	// 	vars->n = 0;
-	// 	while(vars->map[vars->i][vars->j])
-	// 	{
-		// printf("@@@@@@@%c\n",vars->map[vars->i][vars->j]);
-		// 	if(keycode == 126 )
-		// 	{
-				
-		// 		if(vars->map[vars->i - 1][vars->j] == '0')
-		// 		{
-		// 			printf("fdf\n");
-		// 			vars->map[vars->i][vars->j] = '0';
-		// 			vars->map[vars->i -1][vars->j] = 'P';
-		// 			game(vars->i , vars->j,vars->map);
-		// 		}
-				// mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
-				// mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m - 100, vars->n);
-				// vars->m-=100;
-				// vars->i--;
 			if(keycode == 126)
 			{
 				if(vars->map[vars->i - 1][vars->j] == '1' || vars->map[vars->i - 1][vars->j] == 'E')
 					return 0 ;
+				if(vars->map[vars->i - 1][vars->j] == 'E')
+				{
+					if(!find_cookie(*vars))
+					{
+						printf("congrats u won\n");
+						mlx_destroy_window(vars->mlx, vars->window);
+						exit(0);
+					}
+					return(0);
+				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n - 100);
 				vars->map[vars->i][vars->j] = '0';
@@ -88,8 +96,18 @@ int close1(int keycode , t_vars *vars)
 			}
 			if(keycode == 125)
 			{
-				if(vars->map[vars->i  + 1][vars->j] == '1' || vars->map[vars->i + 1][vars->j] == 'E')
+				if(vars->map[vars->i  + 1][vars->j] == '1' )
 					return 0 ;
+				if(vars->map[vars->i - 1][vars->j] == 'E')
+				{
+					if(!find_cookie(*vars))
+					{
+						printf("congrats u won\n");
+						mlx_destroy_window(vars->mlx, vars->window);
+						exit(0);
+					}
+					return(0);
+				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n + 100);
 				vars->map[vars->i][vars->j] = '0';
@@ -99,8 +117,18 @@ int close1(int keycode , t_vars *vars)
 			}
 			if(keycode == 124)
 			{
-				if(vars->map[vars->i ][vars->j + 1] == '1' || vars->map[vars->i][vars->j + 1] == 'E')
+				if(vars->map[vars->i ][vars->j + 1] == '1')
 					return 0 ;
+				if(vars->map[vars->i - 1][vars->j] == 'E')
+				{
+					if(!find_cookie(*vars))
+					{
+						printf("congrats u won\n");
+						mlx_destroy_window(vars->mlx, vars->window);
+						exit(0);
+					}
+					return(0);
+				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m+100, vars->n );
 				vars->map[vars->i][vars->j] = '0';
@@ -110,8 +138,14 @@ int close1(int keycode , t_vars *vars)
 			}
 			if(keycode == 123)
 			{
-				if(vars->map[vars->i  ][vars->j -1] == '1' || vars->map[vars->i][vars->j -1] == 'E')
+				if(vars->map[vars->i  ][vars->j -1] == '1' )
 					return 0 ;
+					if(vars->map[vars->i][vars->j -1] == 'E')
+					{
+							printf("congrats u won\n");
+						mlx_destroy_window(vars->mlx, vars->window);
+						exit(0);
+					}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m - 100, vars->n );
 				vars->map[vars->i][vars->j] = '0';
@@ -119,9 +153,6 @@ int close1(int keycode , t_vars *vars)
 				vars->j--;
 				vars->map[vars->i][vars->j] = 'P';
 			}
-				
-	// 	}
-	//}
 	return(0);
 }
 	void    game(int x, int y, char **map)

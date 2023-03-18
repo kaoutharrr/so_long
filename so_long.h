@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/16 13:28:47 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/18 11:24:39 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void fill(char **map, int i, int j, char c);
 void find(char **walls, char c);
 void    game(int x, int y, char **map);
 void	move_the_player(t_vars vars, char **map);
+int find_cookie(t_vars vars);
 #	endif
