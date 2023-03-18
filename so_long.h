@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/16 13:17:45 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/16 13:28:47 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_vars {
 		int		j;
 		int a,b;
 		int n,m;
+		char **map;
 }	t_vars;
 char	**ft_split(char  *s, char c);
 void	error(char *s, int fd, int ex);

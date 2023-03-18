@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:24:19 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/16 13:16:58 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/18 02:06:34 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,113 @@
 // }
 int close1(int keycode , t_vars *vars)
 {
+	vars->i = 0;
+	vars->j = 0;
+	vars->n = 0;
+	vars->m = 0;
 	if(keycode == 53)
 	{
 		mlx_destroy_window(vars->mlx, vars->window);
 		exit(0);
 	}
+	while(vars->map[vars->i])
+	{
+		vars->j = 0;
+		vars->m = 0;
+		while ( vars->map[vars->i][vars->j])
+		{
+			vars->j++;
+			vars->m+=100;
+			if(vars->map[vars->i][vars->j] == 'P')
+			{
+				// fprintf(stderr,"here\n");
+				break;
+			}
+
+		}
+		if(vars->map[vars->i][vars->j] == 'P')
+		{
+			// fprintf(stderr,"here\n");
+			break;
+		}
+		vars->i++;
+		vars->n+=100;
+	}
+	// while(vars->map[vars->i])
+	// {
+	// 	vars->j = 0;
+	// 	vars->n = 0;
+	// 	while(vars->map[vars->i][vars->j])
+	// 	{
+		// printf("@@@@@@@%c\n",vars->map[vars->i][vars->j]);
+		// 	if(keycode == 126 )
+		// 	{
+				
+		// 		if(vars->map[vars->i - 1][vars->j] == '0')
+		// 		{
+		// 			printf("fdf\n");
+		// 			vars->map[vars->i][vars->j] = '0';
+		// 			vars->map[vars->i -1][vars->j] = 'P';
+		// 			game(vars->i , vars->j,vars->map);
+		// 		}
+				// mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
+				// mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m - 100, vars->n);
+				// vars->m-=100;
+				// vars->i--;
+			if(keycode == 126)
+			{
+				if(vars->map[vars->i - 1][vars->j] == '1' || vars->map[vars->i - 1][vars->j] == 'E')
+					return 0 ;
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n - 100);
+				vars->map[vars->i][vars->j] = '0';
+				vars->i--;
+				vars->map[vars->i][vars->j] = 'P';
+				vars->n-=100;
+			}
+			if(keycode == 125)
+			{
+				if(vars->map[vars->i  + 1][vars->j] == '1' || vars->map[vars->i + 1][vars->j] == 'E')
+					return 0 ;
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n + 100);
+				vars->map[vars->i][vars->j] = '0';
+				vars->n+=100;
+				vars->i++;
+				vars->map[vars->i][vars->j] = 'P';
+			}
+			if(keycode == 124)
+			{
+				if(vars->map[vars->i ][vars->j + 1] == '1' || vars->map[vars->i][vars->j + 1] == 'E')
+					return 0 ;
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m+100, vars->n );
+				vars->map[vars->i][vars->j] = '0';
+				vars->n+=100;
+				vars->j++;
+				vars->map[vars->i][vars->j] = 'P';
+			}
+			if(keycode == 123)
+			{
+				if(vars->map[vars->i  ][vars->j -1] == '1' || vars->map[vars->i][vars->j -1] == 'E')
+					return 0 ;
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m - 100, vars->n );
+				vars->map[vars->i][vars->j] = '0';
+				vars->n-=100;
+				vars->j--;
+				vars->map[vars->i][vars->j] = 'P';
+			}
+				
+	// 	}
+	//}
 	return(0);
 }
 	void    game(int x, int y, char **map)
 	{
 		t_vars vars;
 
+		vars.map = map;
 		vars.n = 0;
 		vars.m = 0;
 		vars.i = 0;
@@ -107,11 +203,8 @@ int close1(int keycode , t_vars *vars)
 		// mlx_put_image_to_window(mlx, window, kitten, 400, 100);
 		// mlx_put_image_to_window(mlx, window, door, 1000, 1000);
 		mlx_key_hook(vars.window, close1, &vars);
-		move_the_player(&vars, map);
+		//move_the_player(&vars, map);
 		mlx_loop(&vars);
 	}
 
-	void	move_the_player(t_vars vars, char **map)
-	{
-		
-	}
+// int move_player(int keycode, )
