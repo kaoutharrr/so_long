@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:19:49 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/18 22:01:09 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/19 15:52:19 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	fill(char **map, int i, int j, char c)
 	fill(map, i- 1, j, c);
 	fill(map, i , j+1, c);
 	fill(map, i , j-1, c);
-	//return(map);
 }
 
 void find(char **walls, char c)

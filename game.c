@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:24:19 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/19 15:42:10 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/19 16:03:16 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int close1(int keycode , t_vars *vars)
 					return(0);
 				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n - 100);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n - 100);
 				 vars->count++;
 				 printf("moves : %d\n", vars->count);
@@ -112,6 +113,7 @@ int close1(int keycode , t_vars *vars)
 					return(0);
 				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n + 100);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n + 100);
 			 	vars->count++;
 				 printf("moves : %d\n", vars->count);
@@ -135,7 +137,8 @@ int close1(int keycode , t_vars *vars)
 					}
 					return(0);
 				}
-				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m + 100, vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m+100, vars->n );
 				 vars->count++;
 				 printf("moves : %d\n", vars->count);
@@ -161,7 +164,8 @@ int close1(int keycode , t_vars *vars)
 					}
 				 vars->count++;
 				 printf("moves : %d\n", vars->count);
-				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
+				 mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
+				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m - 100, vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m - 100, vars->n );
 				vars->map[vars->i][vars->j] = '0';
 				vars->n-=100;
