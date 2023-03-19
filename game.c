@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:24:19 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/18 11:39:25 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/19 15:42:10 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int close1(int keycode , t_vars *vars)
 			vars->m+=100;
 			if(vars->map[vars->i][vars->j] == 'P')
 			{
-				// fprintf(stderr,"here\n");
+	
 				break;
 			}
 
@@ -73,13 +73,13 @@ int close1(int keycode , t_vars *vars)
 		vars->i++;
 		vars->n+=100;
 	}
-			if(keycode == 126)
+			if(keycode == 126 || keycode == 13)
 			{
-				if(vars->map[vars->i - 1][vars->j] == '1' || vars->map[vars->i - 1][vars->j] == 'E')
+				if(vars->map[vars->i - 1][vars->j] == '1' )
 					return 0 ;
-				if(vars->map[vars->i - 1][vars->j] == 'E')
+				if(vars->map[vars->i - 1][vars->j] == 'E' )
 				{
-					if(!find_cookie(*vars))
+					if( find_cookie(*vars)== 0)
 					{
 						printf("congrats u won\n");
 						mlx_destroy_window(vars->mlx, vars->window);
@@ -89,18 +89,21 @@ int close1(int keycode , t_vars *vars)
 				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n - 100);
+				 vars->count++;
+				 printf("moves : %d\n", vars->count);
 				vars->map[vars->i][vars->j] = '0';
 				vars->i--;
 				vars->map[vars->i][vars->j] = 'P';
 				vars->n-=100;
+			
 			}
-			if(keycode == 125)
+			if(keycode == 125 || keycode == 1)
 			{
-				if(vars->map[vars->i  + 1][vars->j] == '1' )
+				if(vars->map[vars->i + 1][vars->j] == '1' )
 					return 0 ;
-				if(vars->map[vars->i - 1][vars->j] == 'E')
+				if(vars->map[vars->i + 1][vars->j] == 'E' )
 				{
-					if(!find_cookie(*vars))
+					if( find_cookie(*vars)== 0)
 					{
 						printf("congrats u won\n");
 						mlx_destroy_window(vars->mlx, vars->window);
@@ -110,18 +113,21 @@ int close1(int keycode , t_vars *vars)
 				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m , vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m, vars->n + 100);
+			 	vars->count++;
+				 printf("moves : %d\n", vars->count);
 				vars->map[vars->i][vars->j] = '0';
 				vars->n+=100;
 				vars->i++;
 				vars->map[vars->i][vars->j] = 'P';
+		
 			}
-			if(keycode == 124)
+			if(keycode == 124 || keycode == 2)
 			{
-				if(vars->map[vars->i ][vars->j + 1] == '1')
+				if(vars->map[vars->i][vars->j + 1] == '1')
 					return 0 ;
-				if(vars->map[vars->i - 1][vars->j] == 'E')
+				if(vars->map[vars->i][vars->j + 1] == 'E' )
 				{
-					if(!find_cookie(*vars))
+					if( find_cookie(*vars)== 0)
 					{
 						printf("congrats u won\n");
 						mlx_destroy_window(vars->mlx, vars->window);
@@ -131,34 +137,44 @@ int close1(int keycode , t_vars *vars)
 				}
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m+100, vars->n );
+				 vars->count++;
+				 printf("moves : %d\n", vars->count);
 				vars->map[vars->i][vars->j] = '0';
 				vars->n+=100;
 				vars->j++;
 				vars->map[vars->i][vars->j] = 'P';
+	
 			}
-			if(keycode == 123)
+			if(keycode == 123 || keycode == 0)
 			{
 				if(vars->map[vars->i  ][vars->j -1] == '1' )
 					return 0 ;
-					if(vars->map[vars->i][vars->j -1] == 'E')
+					if(vars->map[vars->i][vars->j -1] == 'E' )
 					{
+						if( find_cookie(*vars)== 0)
+						{
 							printf("congrats u won\n");
 						mlx_destroy_window(vars->mlx, vars->window);
 						exit(0);
+						}
+						return(0);
 					}
+				 vars->count++;
+				 printf("moves : %d\n", vars->count);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->img, vars->m, vars->n);
 				mlx_put_image_to_window(vars->mlx, vars->window,vars->kitten, vars->m - 100, vars->n );
 				vars->map[vars->i][vars->j] = '0';
 				vars->n-=100;
 				vars->j--;
 				vars->map[vars->i][vars->j] = 'P';
+			
 			}
 	return(0);
 }
 	void    game(int x, int y, char **map)
 	{
 		t_vars vars;
-
+		vars.count = 0;
 		vars.map = map;
 		vars.n = 0;
 		vars.m = 0;

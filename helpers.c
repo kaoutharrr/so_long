@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 10:33:12 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/12 15:26:50 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/18 21:01:28 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 #include <stdio.h>
 
 
+int	ft_strcmp(char *s1, char *s2)
+{
+	size_t				i;
+	unsigned const char	*a1;
+	unsigned const char	*a2;
+
+	a1 = (unsigned const char *)s1;
+	a2 = (unsigned const char *)s2;
+	i = 0;
+	while ((a1[i] != '\0' || a2[i] != '\0'))
+	{
+		if (a1[i] != a2[i])
+			return (a1[i] - a2[i]);
+		i++;
+	}
+	return (0);
+}
 void check_errors(char **map)
 {
 	int i;

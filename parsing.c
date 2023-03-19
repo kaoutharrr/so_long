@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:19:49 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/16 09:38:05 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/18 22:01:09 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	readmap(int fd)
 	char	*line;
 	char	*join;
 	char	**walls;
+	char    **copy;
 	int		i;
 	int		j;;
 	i = 0;
@@ -32,26 +33,22 @@ void	readmap(int fd)
 		join = ft_strjoin(join, line);
 		line = get_next_line(fd);
 	}
-	printf("%s\n", join);
 	walls = ft_split(join, '\n');
 	check_errors(walls);
 	check_walls(walls);
 	check_borders(walls);
 	while(walls[i])
 	 {
-	
 		j = 0;
 		while ( walls[i][j])
 		{
 			j++;
 			if(walls[i][j] == 'P')
 				break;
-			
 		}
 		if(walls[i][j] == 'P')
 			break;
 		i++;
-	
 	}
 	i = 0;
 	j = 0;
@@ -59,16 +56,12 @@ void	readmap(int fd)
 		i++;
 	while(walls[0][j])
 		j++;
-	printf("\n i : %d, j : %d", i, j);
 	game(i, j, walls);
-	fill(walls, i,  j,'*');
-	find(walls, 'E');
-	find(walls, 'C');
-	find(walls, 'P');
+	fill(copy, i,  j,'*');
+	find(copy, 'E');
+	find(copy, 'C');
+	find(copy, 'P');
 	map_check(join);
-
-	
-	
 	}
 
 void	fill(char **map, int i, int j, char c)
@@ -112,4 +105,25 @@ void find(char **walls, char c)
 		i++;
 	
 	}
+}
+
+char **ft_copy(char **map)
+{
+	int i;
+	int j;
+	char **str;
+	i = 0;
+	j = 0;
+
+	while(map[i])
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			str[i][j] = map[i][j];
+			j++;
+		}
+		i++;
+	}
+	return(str);
 }
