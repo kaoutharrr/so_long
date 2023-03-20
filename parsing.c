@@ -6,12 +6,13 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:19:49 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/19 15:52:19 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/20 12:23:33 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
+
 
 void	readmap(int fd)
 {
@@ -19,21 +20,38 @@ void	readmap(int fd)
 	char	*join;
 	char	**walls;
 	char    **copy;
+	char    *leak;
 	int		i;
-	int		j;;
+	int		j;
+	int a = 0;
 	i = 0;
 	j  =  0;
-
+		
 	if(fd < 0)
 		error("invalid map\n",2,1);
 	line = get_next_line(fd);
-	join = "";
+	if(!line)
+		error("invalid map", 2, 1);
+	join = ft_strdup("");
 	while(line)
 	{
+		free(line);
+		leak = join;
+		if (!ft_strcmp(line, "\n"))
+		{
+			free(line);
+			error("invalid map", 2, 1);
+		}
+		
 		join = ft_strjoin(join, line);
+		free(leak);
 		line = get_next_line(fd);
+		printf("\n\n\n\n\n\n\n %s\n\n\n\n\n\n\n\n\n",line);
+		system("leaks so_long");
 	}
+	
 	walls = ft_split(join, '\n');
+	copy = ft_split(join, '\n');
 	check_errors(walls);
 	check_walls(walls);
 	check_borders(walls);
@@ -50,18 +68,22 @@ void	readmap(int fd)
 			break;
 		i++;
 	}
-	i = 0;
+	fill(copy, i,  j,'*');
+	find(copy, 'E');
+	find(copy, 'C');
+	find(copy, 'P');
+	my_free(copy);
+	map_check(join);
+	free(join);
+		i = 0;
 	j = 0;
 	while(walls[i])
 		i++;
 	while(walls[0][j])
 		j++;
+	
 	game(i, j, walls);
-	fill(copy, i,  j,'*');
-	find(copy, 'E');
-	find(copy, 'C');
-	find(copy, 'P');
-	map_check(join);
+
 	}
 
 void	fill(char **map, int i, int j, char c)
@@ -104,25 +126,4 @@ void find(char **walls, char c)
 		i++;
 	
 	}
-}
-
-char **ft_copy(char **map)
-{
-	int i;
-	int j;
-	char **str;
-	i = 0;
-	j = 0;
-
-	while(map[i])
-	{
-		j = 0;
-		while(map[i][j])
-		{
-			str[i][j] = map[i][j];
-			j++;
-		}
-		i++;
-	}
-	return(str);
 }
