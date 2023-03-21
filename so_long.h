@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/21 02:23:47 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/21 18:56:43 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include "gnl/get_next_line.h"
 # include "ft_printf/ft_printf.h"
+# include <fcntl.h>
 
 typedef struct s_vars
 {
