@@ -6,12 +6,11 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:20:57 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/12 13:25:32 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/21 02:18:31 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
-
 
 char	*ft_strdup(char *s1)
 {
@@ -32,9 +31,10 @@ char	*ft_strdup(char *s1)
 	s2[i] = '\0';
 	return (s2);
 }
+
 char	*ft_substr(char *s, int start, int len)
 {
-	int	i;
+	int		i;
 	char	*sub;
 
 	i = 0;

@@ -6,13 +6,11 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 10:33:12 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/18 21:01:28 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/21 02:10:57 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
-
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -31,18 +29,18 @@ int	ft_strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
-void check_errors(char **map)
-{
-	int i;
 
-	int j;
+void	check_errors(char **map)
+{
+	int	i;
+	int	j;
 
 	i = 0;
-	j = i+ 1;
-	while(map[i])
+	j = i + 1;
+	while (map[i])
 	{
-		if (ft_strlen(map[i])!= ft_strlen(map[j]))
-			error("invalid map\n",2,1);
+		if (ft_strlen(map[i]) != ft_strlen(map[j]))
+			error("invalid map\n", 2, 1);
 		i++;
 	}
 }
@@ -54,106 +52,107 @@ void	check_walls(char **map)
 
 	i = 0;
 	j = 0;
-	while(map[i])
+	while (map[i])
 		i++;
 	--i;
-	while(map[0][j] != '\0')
+	while (map[0][j] != '\0')
 	{
-		
-		if(map[0][j] != '1')
-			error("invalid map\n",2 ,1);
-	
+		if (map[0][j] != '1')
+			error("invalid map\n", 2, 1);
 		j++;
 	}
-	
 	j = 0;
-	while( map[i][j])
+	while (map[i][j])
 	{
-		
-		if(map[i][j] != '1')
-			error("invalid map\n",2 ,1);
+		if (map[i][j] != '1')
+			error("invalid map\n", 2, 1);
 		j++;
 	}
 }
+
 void	check_borders(char **map)
 {
 	int	i;
 	int	j;
+
 	i = 0;
 	j = 0;
-
 	while (map[0][j])
 		j++;
-	 j -= 1;
-	while(map[i])
+	j -= 1;
+	while (map[i])
 	{
-		if(map[i][0]!= '1')
-			error("invalid map\n",2 ,1);
+		if (map[i][0] != '1')
+			error("invalid map\n", 2, 1);
 		i++;
 	}
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
-		if(map[i][j]!= '1')
-			error("invalid map\n",2 ,1);
+		if (map[i][j] != '1')
+			error("invalid map\n", 2, 1);
 		i++;
 	}
 }
+
 void	map_check(char *map)
 {
 	int	i;
 
 	i = 0;
-	if(map[i])
+	if (map[i])
 	{
 		collectible_check(map);
 		exit_check(map, 'E');
 		exit_check(map, 'P');
-		 //i++;
-		
-	 }
-	 i = 0;
+	}
+	i = 0;
 	while (map[i])
 	{
-		if(map[i] == '1' || map[i] == '0' || map[i] == '\n' || map[i] == 'C' || map[i] == 'P' || map[i] == 'E')
+		if (map[i] == '1' || map[i] == '0' || map[i] == '\n'
+			|| map[i] == 'C' || map[i] == 'P' || map[i] == 'E')
 			i++;
 		else
-			error("invalid map\n",2 ,1);
+			error("invalid map\n", 2, 1);
 	}
 }
 
 void	collectible_check(char *map)
 {
-	int  i;
-	int c = 0;
+	int	i;
+	int	c;
+
+	c = 0;
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
-		if(map[i] == 'C')
+		if (map[i] == 'C')
 		{
 			c++;
 			i++;
 		}
 		i++;
 	}
-	if(c == 0)
-		error("invalid map\n",2 ,1);
+	if (c == 0)
+		error("invalid map\n", 2, 1);
 }
 
 void	exit_check(char *map, char c)
 {
-	int  i;
-	int e = 0;
+	int	i;
+	int	e;
+
+	e = 0;
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
-		if(map[i] == c)
+		if (map[i] == c)
 		{
 			e++;
 			i++;
 		}
 		i++;
 	}
-	if(e != 1)
-		error("invalid map\n",2 ,1);
+	if (e != 1)
+		error("invalid map\n", 2, 1);
 }

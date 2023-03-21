@@ -6,11 +6,12 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:21:55 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/11 18:26:19 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/21 02:17:35 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 static char	**myfree(char **p)
 {
 	int	i;
@@ -61,7 +62,7 @@ int	count_chars(char *s, char c)
 	return (i);
 }
 
-char	**ft_split(char  *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**str;
 	int		len;
