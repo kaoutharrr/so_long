@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:19:49 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/21 19:14:35 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/21 19:18:25 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	readmap(int fd)
 	while (vars.line)
 	{
 		if (!ft_strcmp(vars.line, "\n"))
-			error("invalid map", 2, 1);		
+			error("invalid map", 2, 1);
 		vars.leak = vars.join;
 		vars.join = ft_strjoin(vars.join, vars.line);
-		vars.leak =  vars.line;
+		vars.leak = vars.line;
 		vars.line = get_next_line(fd);
 		free(vars.leak);
 	}

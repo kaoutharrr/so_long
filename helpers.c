@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 10:33:12 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/21 02:10:57 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/21 19:17:49 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,44 +115,4 @@ void	map_check(char *map)
 		else
 			error("invalid map\n", 2, 1);
 	}
-}
-
-void	collectible_check(char *map)
-{
-	int	i;
-	int	c;
-
-	c = 0;
-	i = 0;
-	while (map[i])
-	{
-		if (map[i] == 'C')
-		{
-			c++;
-			i++;
-		}
-		i++;
-	}
-	if (c == 0)
-		error("invalid map\n", 2, 1);
-}
-
-void	exit_check(char *map, char c)
-{
-	int	i;
-	int	e;
-
-	e = 0;
-	i = 0;
-	while (map[i])
-	{
-		if (map[i] == c)
-		{
-			e++;
-			i++;
-		}
-		i++;
-	}
-	if (e != 1)
-		error("invalid map\n", 2, 1);
 }
