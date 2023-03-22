@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 00:40:15 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/21 19:20:46 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/22 14:01:31 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ void	game_init(int x, int y, char **map)
 	vars.a = y * 100 ;
 	vars.mlx = mlx_init();
 	vars.window = mlx_new_window(vars.mlx, vars.a, vars.b, "so_long");
-	vars.door = mlx_xpm_file_to_image(vars.mlx, "door.xpm", &vars.w, &vars.h);
-	vars.img = mlx_xpm_file_to_image(vars.mlx, "background.xpm",
+	vars.door = mlx_xpm_file_to_image(vars.mlx,
+			"textures/door.xpm", &vars.w, &vars.h);
+	vars.img = mlx_xpm_file_to_image(vars.mlx, "textures/background.xpm",
 			&vars.w, &vars.h);
-	vars.wall = mlx_xpm_file_to_image(vars.mlx, "walls.xpm", &vars.w, &vars.h);
+	vars.wall = mlx_xpm_file_to_image(vars.mlx, "textures/walls.xpm",
+			&vars.w, &vars.h);
 	vars.cookie = mlx_xpm_file_to_image(vars.mlx,
-			"cookie.xpm", &vars.w, &vars.h);
-	vars.kitten = mlx_xpm_file_to_image(vars.mlx, "kitten.xpm",
+			"textures/cookie.xpm", &vars.w, &vars.h);
+	vars.kitten = mlx_xpm_file_to_image(vars.mlx, "textures/kitten.xpm",
 			&vars.w, &vars.h);
 	put_window(vars);
 	game_play(vars, map);
@@ -76,7 +78,8 @@ void	game_play(t_vars vars, char **map)
 		vars.m += 100;
 		vars.i++;
 	}
-	mlx_key_hook(vars.window, close1, &vars);
+	mlx_hook(vars.window, 02, 1L << 0, close1, &vars);
+	mlx_hook(vars.window, 17, 0L, (void *)exit, &vars);
 	mlx_loop(&vars);
 }
 

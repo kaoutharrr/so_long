@@ -6,7 +6,7 @@
 /*   By: kkouaz <kkouaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:20:47 by kkouaz            #+#    #+#             */
-/*   Updated: 2023/03/21 18:56:43 by kkouaz           ###   ########.fr       */
+/*   Updated: 2023/03/22 14:00:01 by kkouaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,20 @@ typedef struct s_vars
 	char	**walls;
 	char	**copy;
 	char	*leak;
+	char	*str;
 }	t_vars;
 
+typedef struct t_xpm
+{
+	int		background;
+	int		walls;
+	int		kitten;
+	int		cookie;
+	int		door;
+}			t_xpm;
+
+void	check_textures(t_xpm *files);
+char	*ft_find(char *str);
 char	**my_free(char **p);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split(char *s, char c);

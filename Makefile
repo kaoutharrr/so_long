@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
- #CFLAGS =  -g -fsanitize=address
+#CFLAGS =  -Wall -Wextra -Werror -Imlx -fsanitize=address
 
 RM = rm -rf
 SRCS = main.c parsing.c gnl/get_next_line.c gnl/get_next_line_utils.c split.c tools.c helpers.c play.c \
@@ -10,14 +10,12 @@ OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
-	
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(SRCS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	
 
 clean :
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_B)
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) 
 
 re : fclean all
